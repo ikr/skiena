@@ -1,8 +1,8 @@
-var square = function (x) {
-    return x * x;
-};
-
 var point = function (x, y) {
+    var square = function (x) {
+        return x * x;
+    };
+    
     return {
         "x": x,
         "y": y,
@@ -13,23 +13,26 @@ var point = function (x, y) {
     };
 };
 
-var firstPoint = function (namedPoints) {
-    return Iterator(namedPoints).next()[0];
-};
-
-var nearestNeighbourTour = function (namedPoints) {
+var nearestNeighbourTour = function (points) {
     
 };
 
-print(
-    nearestNeighbourTour(
-        {
-            a: point(300, 0),
-            b: point(400, 100),
-            c: point(400, 200),
-            d: point(300, 300),
-            e: point(200, 300),
-            f: point(100, 100),
-        }
-    )
-);
+var circle = function () {
+    return [
+        point(0, 5),
+        point(5, 0),
+        point(0, -5),
+        point(-5, 0),
+        point(-5, 0),
+        point(3, 4),
+        point(4, 3),
+        point(4, -3),
+        point(3, -4),
+        point(-3, -4),
+        point(-4, -3),
+        point(-4, 3),
+        point(-3, 4)
+    ];
+};
+
+print(nearestNeighbourTour(circle()));
