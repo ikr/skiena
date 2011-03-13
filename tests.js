@@ -1,6 +1,29 @@
 var Skiena = {};
 
 Skiena.runTests = function () {
+    module("Foundation");
+    
+    test("Explore QTest asserts with objects", function () {
+        deepEqual({a: 1, b: 2}, {a: 1, b: 2});
+        
+        notDeepEqual(
+            {a: 1, foo: function () {}},
+            {a: 1, foo: function () {}}
+        );
+        
+        var A = function (attr) {
+            this.attr = attr;
+            
+            this.foo = function () {
+                this.attr++;
+            };
+        };
+        
+        deepEqual(new A(1), new A(1));
+        
+        notDeepEqual(new A(1), new A(2));
+    });
+    
     module("TSP");
     
     var circle = function () {
@@ -21,7 +44,7 @@ Skiena.runTests = function () {
     };
     
     test("Points distance", function () {
-        
+        strictEqual(5, point(0, 0).distanceTo(point(3, 4)));
     });
     
     test("Copying an array", function () {
@@ -43,25 +66,22 @@ Skiena.runTests = function () {
     });
     
     test("Nearest neighbor heuristic", function () {
-        var expected = [
-            point(0, 5),
-            point(3, 4),
-            point(4, 3),
-            point(5, 0),
-            point(4, -3),
-            point(3, -4),
-            point(0, -5),
-            point(-3, -4),
-            point(-4, -3),
-            point(-5, 0),
-            point(-4, 3),
-            point(-3, 4)
-        ];
-        
-        var actual = nearestNeighbourTour(circle());
-        
-        deepEqual(point(1, 2), point(1, 2));
-        
-        deepEqual(actual, expected);
+        deepEqual(
+            nearestNeighbourTour(circle()),
+            [
+                point(0, 5),
+                point(3, 4),
+                point(4, 3),
+                point(5, 0),
+                point(4, -3),
+                point(3, -4),
+                point(0, -5),
+                point(-3, -4),
+                point(-4, -3),
+                point(-5, 0),
+                point(-4, 3),
+                point(-3, 4)
+            ]
+        );
     });
 };

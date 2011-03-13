@@ -1,16 +1,18 @@
-var point = function (x, y) {
+var PointConstructor = function (x, y) {
     var square = function (x) {
         return x * x;
     };
     
-    return {
-        "x": x,
-        "y": y,
+    this.x = x;
+    this.y = y;
 
-        distanceTo: function (otherPoint) {
-            return Math.sqrt(square(this.x - otherPoint.x) + square(this.y - otherPoint.y));
-        }
+    this.distanceTo = function (otherPoint) {
+        return Math.sqrt(square(this.x - otherPoint.x) + square(this.y - otherPoint.y));
     };
+};
+
+var point = function (x, y) {
+    return new PointConstructor(x, y);
 };
 
 var copyArray = function (a) {
