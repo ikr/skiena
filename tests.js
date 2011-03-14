@@ -24,7 +24,7 @@ Skiena.runTests = function () {
         notDeepEqual(new A(1), new A(2));
     });
     
-    module("TSP");
+    module("TSP: nearest neighbor heuristic");
     
     var circle = function () {
         return [
@@ -82,6 +82,18 @@ Skiena.runTests = function () {
                 point(-4, 3),
                 point(-3, 4)
             ]
+        );
+    });
+    
+    module("TSP: closest pair heuristic");
+    
+    test("closestPairIndicesArray: two point", function () {
+        deepEqual(
+            closestPairIndicesArray(
+                [point(0, 0), point(1, 1)]
+            ),
+            
+            [0, 1]
         );
     });
 };

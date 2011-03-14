@@ -15,6 +15,8 @@ var point = function (x, y) {
     return new PointConstructor(x, y);
 };
 
+//--------------------------------------------------------------------------------------------------
+
 var copyArray = function (a) {
     var ret = [];
     
@@ -56,6 +58,8 @@ var nearestNeighbourTour = function (points) {
     
     return result;
 };
+
+//--------------------------------------------------------------------------------------------------
 
 var closestPairTour = function (points) {
     
