@@ -3,11 +3,11 @@
         1
         (* n (factorial (- n 1)))))
         
-(define (combination n k)
+(define (combination-count n k)
     (/
         (factorial n)
         (*
             (factorial k)
             (factorial (- n k)))))
             
-(combination 44 6)
+(combination-count 44 6)
