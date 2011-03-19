@@ -11,3 +11,5 @@
             (factorial (- n k)))))
             
 (combination-count 44 6)
+
+(combination-count 15 4)
