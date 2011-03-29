@@ -13,3 +13,5 @@
 (combination-count 44 6)
 
 (combination-count 15 4)
+
+(combination-count 900 450)
