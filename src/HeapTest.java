@@ -83,6 +83,17 @@ public class HeapTest extends TestCase {
         assertArraysEqual(expected, h.toArray());
     }
     
+    public void testInsertsThreeElements() {
+        Heap h = h();
+        h.insert(2);
+        h.insert(1);
+        h.insert(2);
+        
+        int[] expected = {1, 2, 2};
+        
+        assertArraysEqual(expected, h.toArray());
+    }
+    
 //--------------------------------------------------------------------------------------------------
     
     private void assertArraysEqual(int[] expected, int[] actual) {
