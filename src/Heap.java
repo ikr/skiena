@@ -15,29 +15,66 @@ public class Heap {
         return result;
     }
 
-    public static int parentIndex(int index) {
-        return (index > 0)? ((index - 1) / 2) : -1;
-    }
-
-    public static int firstChildIndex(int index) {
-        return index * 2 + 1;
-    }
-
     public void insert(int x) {
         queue[queueLength] = x;
         ++queueLength;
         bubbleUp(queueLength - 1);
     }
     
+    public int extractMin() {
+        if (queueLength <= 0) return -1;
+        --queueLength;
+        
+        int result = queue[0];
+        
+        queue[0] = queue[queueLength];
+        bubbleDown(0);
+        
+        return result;
+    }
+    
 //--------------------------------------------------------------------------------------------------    
     
     private void bubbleUp(int index) {
-        if (-1 == parentIndex(index)) return;
+        if (-1 == HeapQueueSupport.parentIndex(index)) return;
         
-        if (queue[index] < queue[parentIndex(index)]) {
-            swap(index, parentIndex(index));
-            bubbleUp(parentIndex(index));
+        if (queue[index] < queue[HeapQueueSupport.parentIndex(index)]) {
+            swap(index, HeapQueueSupport.parentIndex(index));
+            bubbleUp(HeapQueueSupport.parentIndex(index));
         }
+    }
+    
+    private void bubbleDown(int index) {
+        if (index == queueLength - 1) return;
+        
+        int indexOfMin = indexOfMinElement(
+            index,
+            HeapQueueSupport.firstChildIndex(index),
+            HeapQueueSupport.firstChildIndex(index) + 1
+        );
+        
+        if (indexOfMin != index) {
+            swap(index, indexOfMin);
+            bubbleDown(indexOfMin);
+        }
+    }
+    
+    private int indexOfMinElement(int indexA, int indexB, int indexC) {
+        if (indexB >= queueLength) return indexA;
+        if (indexC >= queueLength) return indexOfMinElement(indexA, indexB);
+        
+        int minValue = Math.min(queue[indexA], Math.min(queue[indexB], queue[indexC]));
+                        
+        if (minValue == queue[indexA]) return indexA;
+        else if (minValue == queue[indexB]) return indexB;
+        else return indexC;
+    }
+    
+    private int indexOfMinElement(int indexA, int indexB) {
+        int minValue = Math.min(queue[indexA], queue[indexB]);
+                        
+        if (minValue == queue[indexA]) return indexA;
+        else return indexB;
     }
     
     private void swap(int indexA, int indexB) {
