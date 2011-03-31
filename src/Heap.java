@@ -5,16 +5,6 @@ public class Heap {
     private int[] queue = new int[10000];
     private int queueLength = 0;
     
-    public int[] toArray() {
-        int[] result = new int[queueLength];
-        
-        for (int i = 0; i < queueLength; ++i) {
-            result[i] = queue[i];
-        }
-        
-        return result;
-    }
-
     public void insert(int x) {
         queue[queueLength] = x;
         ++queueLength;
@@ -34,6 +24,16 @@ public class Heap {
     }
     
 //--------------------------------------------------------------------------------------------------    
+    
+    int[] toArray() {
+        int[] result = new int[queueLength];
+        
+        for (int i = 0; i < queueLength; ++i) {
+            result[i] = queue[i];
+        }
+        
+        return result;
+    }
     
     private void bubbleUp(int index) {
         if (-1 == HeapQueueSupport.parentIndex(index)) return;
