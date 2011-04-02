@@ -85,15 +85,36 @@ Skiena.runTests = function () {
         );
     });
     
-    module("TSP: closest pair heuristic");
+    module("Quicksort");
     
-    test("closestPairIndicesArray: two point", function () {
-        deepEqual(
-            closestPairIndicesArray(
-                [point(0, 0), point(1, 1)]
-            ),
-            
-            [0, 1]
-        );
+    var unsortedArray = function () {
+        return [51, 61, 50, 47, 56, 58, 42, 55, 43, 42,
+            50, 57, 48, 64, 53, 55, 59, 46, 45, 49, 62, 44, 54, 64, 63, 52, 50, 60];
+    };
+    
+    var sortedArray = function () {
+        var result = unsortedArray();
+        result.sort();
+        return result;
+    };
+    
+    test("Reality check for the test data", function () {
+        strictEqual(sortedArray()[0], 42);
+        strictEqual(sortedArray()[unsortedArray().length - 1], 64);
+    });
+    
+    test("Reality check for passing arrays into functions", function () {
+        var foo = function (a) {
+            a[0] = "foo";
+        };
+        
+        var anArray = [0, 0, 0];
+        foo(anArray);
+        
+        strictEqual(anArray[0], "foo");
+    });
+    
+    test("The quicksort itself", function () {
+        deepEqual(quicksort(unsortedArray(), 0, unsortedArray().length - 1), sortedArray());
     });
 };
