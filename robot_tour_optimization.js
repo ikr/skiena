@@ -58,9 +58,3 @@ var nearestNeighbourTour = function (points) {
     
     return result;
 };
-
-//--------------------------------------------------------------------------------------------------
-
-var closestPairTour = function (points) {
-    
-};
