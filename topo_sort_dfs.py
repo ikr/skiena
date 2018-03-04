@@ -4,6 +4,7 @@
 from fileinput import input
 from collections import deque
 
+
 class Vertex:
     def __init__(self, name):
         self.name = name
